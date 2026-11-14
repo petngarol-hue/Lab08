@@ -30,7 +30,10 @@ class DistributoreDAO:
                     nome=row["nome"],
                     indirizzo=row["indirizzo"],
                 )
+
+
                 result.append(distributore)
+
         except Exception as e:
             print(f"Errore durante la query get_distributori: {e}")
             result = None
@@ -39,3 +42,4 @@ class DistributoreDAO:
             cnx.close()
 
         return result
+

@@ -27,6 +27,22 @@ class Model:
         """
         # TODO
 
+        self._lista_prezzi_filtrati=[]
+        self._lista_average_distributore=[]
+        for n in self._distributori:
+            self._lista_prezzi_filtrati = []
+            self.lista=n.get_prezzi()
+            for l in self.lista:
+                if mese == l.data.month:
+                    self._lista_prezzi_filtrati.append(l)
+            self.media=sum([o.prezzo_litro for o in self._lista_prezzi_filtrati ])/len([o.prezzo_litro for o in self._lista_prezzi_filtrati ])
+            self._lista_average_distributore.append((n.nome,self.media))
+        return self._lista_average_distributore
+
+
+
+
+
     def get_sequenza_ottima(self, mese:int):
         """
         Calcola la sequenza ottimale di rifornimenti nei primi 7 giorni
@@ -54,3 +70,4 @@ class Model:
         :return: un dizionario: {id_distributore: [prezzo_giorno1, ..., prezzo_giorno7]}
         """
         # TODO
+
